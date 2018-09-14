@@ -127,8 +127,8 @@ class Solution:
                     else:
                         lastnode = None
                 elif lastnode.isValid and lastnode.parent is None:
-                    
-                    lastnode
+                    # a broken point
+                    lastnode = None
                     continue
             elif c == ')' and lastnode is None:
                 continue
