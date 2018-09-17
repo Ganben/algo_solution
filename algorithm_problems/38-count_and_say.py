@@ -38,14 +38,43 @@ class Solution:
         :type n: int
         :rtype: str
         """
-        s = []
+        s = ''
+        d = []
         for i in range(n):
+            # s = next_s
+            
             if i == 0:
-                s = ['1','1']
+                
+                s = '1'
+                # d.append([1,0])
+            
             else:
+                d = []
                 for el in s:
-                    if el == '1':
-
+                    if len(d) == 0:
+                        d.append([int(el), 1])
+                    elif d[-1][0] == int(el):
+                        d[-1][1] += 1 
+                    else:
+                        d.append([int(el), 1])
+                n_s = []
+                print(d)
+                for ii in range(len(d)):
+                    
+                    n_s.append('%s%s'%(d[ii][1],d[ii][0]))
+                
+                s = ''.join(n_s)
+                
+                
+            
+        if len(s) == 1:
+            return '1'
+        else:
+            res = ''
+            for e in d:
+                res += '%s%s' % (e[1], e[0])
+        
+            return res
 
 
 class Test(unittest.TestCase):
