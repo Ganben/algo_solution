@@ -40,7 +40,56 @@ class Solution:
         :type target: int
         :rtype: List[List[int]]
         """
+        candidates = candidates.sort()
+        cands = candidates.copy()
+        b = target
+        ress = []
+        for i in range(len(candidates)):
+            #cands = candidates
+            bm = cands.pop()
+            if b > bm or b-bm < min(cands):
+                res = self.combinationSum2(cands, b-bm)
+                if len(res)>0:
+                    res.append(bm)
+                else:
+                    res = []
+            elif b == bm:
+                res = [bm]
+            
+            else:
+                res = []
+            
+            if len(res) > 0:
+                ress.append(res)
+            else:
+                continue
         
+        return ress
+
+
 class Test(unittest.TestCase):
     def test1(self):
-        
+        self.assertCountEqual(
+            Solution().combinationSum2(
+            [10,1,2,7,6,1,5],
+            8
+          ),
+          [
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+        )
+
+    def test2(self):
+        self.assertCountEqual(
+            Solution().combinationSum2(
+            [2,5,2,1,2],
+            5
+          ),
+            [
+  [1,2,2],
+  [5]
+]
+        )
